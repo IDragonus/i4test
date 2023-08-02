@@ -1,0 +1,36 @@
+.login-form {
+  max-width: 300px;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.mat-mdc-form-field {
+  --mat-mdc-form-field-floating-label-scale: 0.75;
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 0;
+  text-align: left;
+  width: 100%;
+}

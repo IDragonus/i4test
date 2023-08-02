@@ -1,0 +1,15 @@
+<div class="login-container">
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h1 class="txt-center">Login</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+    </mat-form-field>
+    <!-- <mat-checkbox formControlName="remember">Remember Me</mat-checkbox> -->
+    <button mat-raised-button color="primary" type="submit">Login</button>
+  </form>
+</div>

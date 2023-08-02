@@ -1,0 +1,25 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 2rem;
+  width: 85%;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+.card {
+  height: 22rem;
+  border: 2px solid #222;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+
+.star-points {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0 1rem;
+}
