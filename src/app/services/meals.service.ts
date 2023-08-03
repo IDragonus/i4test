@@ -1,9 +1,14 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpResponse,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import {
   CategoriesApiResponse,
+  Meal,
   MealApiResponse,
 } from '../interfaces/interfaces';
 
@@ -46,6 +51,19 @@ export class MealsService {
         catchError((error: HttpErrorResponse) => {
           console.error('Error fetching meals by category:', error);
           return throwError(() => 'Service error');
+        })
+      );
+  }
+
+  serachMeal(searchMealResult: string): Observable<MealApiResponse> {
+    return this.http
+      .get<MealApiResponse>(
+        `${this.api_url}/json/v1/1/search.php?s=${searchMealResult}`
+      )
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error searching meal: ', error);
+          return throwError(() => error);
         })
       );
   }

@@ -3,13 +3,26 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span class="flex-spacer"></span>
-  <mat-form-field appearance="fill">
+  <!-- <mat-form-field appearance="fill">
     <mat-label>Buscar</mat-label>
-    <input matInput type="text" placeholder="Buscar" />
+    <input matInput type="search" placeholder="Buscar" />
     <button mat-icon-button matSuffix>
       <mat-icon>search</mat-icon>
     </button>
+  </mat-form-field> -->
+  <mat-form-field appearance="fill">
+    <mat-label>Buscar</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="Buscar"
+      [(ngModel)]="searchMealResult"
+    />
+    <button mat-icon-button matSuffix (click)="searched(searchMealResult)">
+      <mat-icon>search</mat-icon>
+    </button>
   </mat-form-field>
+
   <button mat-flat-button color="primary" (click)="logOut()">
     Logout
     <mat-icon>exit_to_app</mat-icon>
@@ -29,6 +42,9 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-home-page [categorySended]="categorySended"></app-home-page>
+    <app-home-page
+      [categorySended]="categorySended"
+      [mealSearched]="response"
+    ></app-home-page>
   </mat-sidenav-content>
 </mat-sidenav-container>

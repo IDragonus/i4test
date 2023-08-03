@@ -22,3 +22,10 @@
 .stars:hover {
   color: gold;
 }
+
+.text-ellipse {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 15.5rem;
+}

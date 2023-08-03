@@ -16,6 +16,11 @@ export class HomePageComponent {
     this.showMealsByCategory(value);
   }
 
+  @Input() set mealSearched(value: string) {
+    this.onSearch(value);
+    console.log('valor en el homepage: ', value);
+  }
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   allMeals!: Observable<Meal[]>;
   dataSource!: MatTableDataSource<Meal>;
@@ -58,6 +63,13 @@ export class HomePageComponent {
   showMealsByCategory(category: string): void {
     this.mealsService.getMealsByCategory(category).subscribe((data) => {
       this.meals = data.meals;
+      this.paginatorMeals();
+    });
+  }
+
+  onSearch(value: string) {
+    this.mealsService.serachMeal(value).subscribe((ress: any) => {
+      this.meals = ress.meals;
       this.paginatorMeals();
     });
   }

@@ -23,6 +23,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatListModule,
     MatCardModule,
     MatPaginatorModule,
+    MatChipsModule,
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

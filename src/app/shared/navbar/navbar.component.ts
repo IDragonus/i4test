@@ -1,7 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MealsService } from 'src/app/services/meals.service';
-import { Category, CategoriesApiResponse } from 'src/app/interfaces/interfaces';
+import {
+  Category,
+  CategoriesApiResponse,
+  MealApiResponse,
+  Meal,
+} from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +17,8 @@ export class NavbarComponent {
   person: any;
   category: Category[] | null = null;
   categorySended!: string;
+  searchMealResult: string = '';
+  response!: string;
 
   ngOnInit() {
     this.obtenerLocalstorage();
@@ -27,7 +34,6 @@ export class NavbarComponent {
   logOut() {
     localStorage.removeItem('persona');
     this.person = {};
-    console.log('LOGOUT', this.person);
     this.router.navigate(['/login']);
   }
 
@@ -44,5 +50,9 @@ export class NavbarComponent {
 
   selectedCategory(category: string) {
     this.categorySended = category;
+  }
+
+  searched(value: string) {
+    this.response = value;
   }
 }
