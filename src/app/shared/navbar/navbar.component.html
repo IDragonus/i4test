@@ -3,25 +3,22 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span class="flex-spacer"></span>
-  <!-- <mat-form-field appearance="fill">
-    <mat-label>Buscar</mat-label>
-    <input matInput type="search" placeholder="Buscar" />
-    <button mat-icon-button matSuffix>
-      <mat-icon>search</mat-icon>
-    </button>
-  </mat-form-field> -->
-  <mat-form-field appearance="fill">
-    <mat-label>Buscar</mat-label>
-    <input
-      matInput
-      type="text"
-      placeholder="Buscar"
-      [(ngModel)]="searchMealResult"
-    />
-    <button mat-icon-button matSuffix (click)="searched(searchMealResult)">
-      <mat-icon>search</mat-icon>
-    </button>
-  </mat-form-field>
+  <div class="search-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Buscar</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Buscar"
+        [(ngModel)]="searchMealResult"
+      />
+      <button mat-icon-button matSuffix (click)="searched(searchMealResult)">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <span class="chips" *ngFor="let chip of searchMade">{{ chip.name }}</span>
+  </div>
 
   <button mat-flat-button color="primary" (click)="logOut()">
     Logout

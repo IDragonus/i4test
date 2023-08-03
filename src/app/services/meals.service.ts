@@ -67,4 +67,15 @@ export class MealsService {
         })
       );
   }
+
+  getMealsById(id: string): Observable<MealApiResponse> {
+    return this.http
+      .get<MealApiResponse>(`${this.api_url}/json/v1/1/lookup.php?i=${id}`)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error fetching meals by category:', error);
+          return throwError(() => 'Service error');
+        })
+      );
+  }
 }

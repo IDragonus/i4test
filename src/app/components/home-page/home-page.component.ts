@@ -4,6 +4,8 @@ import { MealsService } from 'src/app/services/meals.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
+import { ModalComponent } from '../modal/modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home-page',
@@ -27,7 +29,8 @@ export class HomePageComponent {
 
   constructor(
     private mealsService: MealsService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -71,6 +74,15 @@ export class HomePageComponent {
     this.mealsService.serachMeal(value).subscribe((ress: any) => {
       this.meals = ress.meals;
       this.paginatorMeals();
+    });
+  }
+
+  openModalMeals(idMeal: string) {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      data: { id: idMeal },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
     });
   }
 }

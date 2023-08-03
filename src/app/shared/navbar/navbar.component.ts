@@ -19,6 +19,7 @@ export class NavbarComponent {
   categorySended!: string;
   searchMealResult: string = '';
   response!: string;
+  searchMade = [{ name: '' }];
 
   ngOnInit() {
     this.obtenerLocalstorage();
@@ -54,5 +55,6 @@ export class NavbarComponent {
 
   searched(value: string) {
     this.response = value;
+    this.searchMade.push({ name: value });
   }
 }

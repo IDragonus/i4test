@@ -16,7 +16,7 @@
 }
 
 .mat-toolbar {
-  height: 6rem;
+  height: 10rem;
 }
 
 .txt-white {
@@ -34,4 +34,23 @@
   -o-transition: 1.5ms;
   cursor: pointer;
   font-weight: bold;
+}
+
+.chips {
+  display: flex;
+  color: #3f51b5;
+  background-color: #fff;
+  width: 5rem;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container {
+  display: flex;
+  flex-flow: column;
 }

@@ -4,6 +4,7 @@
       <mat-card-title class="text-ellipse">{{ meal.strMeal }}</mat-card-title>
     </mat-card-header>
     <img
+      (click)="openModalMeals(meal.idMeal)"
       mat-card-image
       src="{{ meal.strMealThumb }}"
       alt="{{ meal.strMeal }}"

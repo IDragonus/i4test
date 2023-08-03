@@ -25,6 +25,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ModalComponent } from './components/modal/modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     HomePageComponent,
     ErrorComponent,
     NavbarComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatPaginatorModule,
     MatChipsModule,
     MatAutocompleteModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
