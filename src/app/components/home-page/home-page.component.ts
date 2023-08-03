@@ -13,6 +13,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent {
+  rating: number = 0;
+  stars: number[] = [1, 2, 3, 4, 5];
   meals!: Meal[];
   @Input() set categorySended(value: string) {
     this.showMealsByCategory(value);
@@ -84,5 +86,11 @@ export class HomePageComponent {
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
     });
+  }
+
+  onRatingChange(star: number) {
+    this.rating = star;
+    // Aquí puedes realizar acciones adicionales si es necesario
+    // Por ejemplo, guardar la puntuación en una lista de meals.
   }
 }

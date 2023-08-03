@@ -1,12 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MealsService } from 'src/app/services/meals.service';
-import {
-  Category,
-  CategoriesApiResponse,
-  MealApiResponse,
-  Meal,
-} from 'src/app/interfaces/interfaces';
+import { Category, CategoriesApiResponse } from 'src/app/interfaces/interfaces';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +15,8 @@ export class NavbarComponent {
   categorySended!: string;
   searchMealResult: string = '';
   response!: string;
-  searchMade = [{ name: '' }];
+  searchMade: string[] = [];
+  announcer = inject(LiveAnnouncer);
 
   ngOnInit() {
     this.obtenerLocalstorage();
@@ -54,7 +51,21 @@ export class NavbarComponent {
   }
 
   searched(value: string) {
+    const MAX_SEARCH_HISTORY_LENGTH = 11;
     this.response = value;
-    this.searchMade.push({ name: value });
+    this.searchMade.push(value);
+    if (this.searchMade.length === MAX_SEARCH_HISTORY_LENGTH) {
+      this.searchMade.shift();
+    }
+  }
+
+  remove(fruit: string): void {
+    const index = this.searchMade.indexOf(fruit);
+
+    if (index >= 0) {
+      this.searchMade.splice(index, 1);
+
+      this.announcer.announce(`Removed ${fruit}`);
+    }
   }
 }

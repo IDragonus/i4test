@@ -18,7 +18,7 @@ input[type="text"] {
 }
 
 .mat-drawer-content {
-  height: 90vh !important;
+  height: 100vh !important;
 }
 
 app-home-page {

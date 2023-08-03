@@ -29,3 +29,15 @@
   text-overflow: ellipsis;
   width: 15.5rem;
 }
+
+.rating {
+  font-size: 24px;
+}
+
+.filled-star {
+  color: gold;
+}
+
+.empty-star {
+  color: lightgray;
+}
