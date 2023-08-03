@@ -2,7 +2,10 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { MealApiResponse } from '../interfaces/meals.interfaces';
+import {
+  CategoriesApiResponse,
+  MealApiResponse,
+} from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +22,30 @@ export class MealsService {
         catchError((error: HttpErrorResponse) => {
           console.error('Error fetching Canadian meals:', error);
           return throwError(() => 'Network error');
+        })
+      );
+  }
+
+  getAllCategories(): Observable<CategoriesApiResponse> {
+    return this.http
+      .get<CategoriesApiResponse>(`${this.api_url}/json/v1/1/categories.php`)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error fetching meals by category:', error);
+          return throwError(() => 'Service error');
+        })
+      );
+  }
+
+  getMealsByCategory(category: string): Observable<MealApiResponse> {
+    return this.http
+      .get<MealApiResponse>(
+        `${this.api_url}/json/v1/1/filter.php?c=${category}`
+      )
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error fetching meals by category:', error);
+          return throwError(() => 'Service error');
         })
       );
   }

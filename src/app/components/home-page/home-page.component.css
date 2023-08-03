@@ -7,19 +7,18 @@
   margin-top: 2rem;
 }
 
-.card {
-  height: 22rem;
-  border: 2px solid #222;
-  border-radius: 0.5rem;
-  -webkit-border-radius: 0.5rem;
-  -moz-border-radius: 0.5rem;
-  -ms-border-radius: 0.5rem;
-  -o-border-radius: 0.5rem;
-}
-
-.star-points {
+.star-points-container {
   display: flex;
   align-items: center;
   height: 3rem;
   padding: 0 1rem;
+}
+
+.stars {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.stars:hover {
+  color: gold;
 }

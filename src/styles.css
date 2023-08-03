@@ -7,7 +7,6 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  overflow: hidden;
 }
 p,
 h1 {
@@ -16,4 +15,14 @@ h1 {
 
 input[type="text"] {
   background-color: #fff;
+}
+
+.mat-drawer-content {
+  height: 90vh !important;
+}
+
+app-home-page {
+  height: inherit;
+  display: flex;
+  flex-flow: column;
 }

@@ -4,7 +4,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { MealsService } from './meals.service';
-import { MealApiResponse } from '../interfaces/meals.interfaces';
+import { MealApiResponse } from '../interfaces/interfaces';
 
 describe('MealsService', () => {
   let service: MealsService;

@@ -1,17 +1,22 @@
 <section class="grid-container" *ngIf="meals && meals.length > 0">
-  <mat-card class="example-card" *ngFor="let meal of meals">
+  <mat-card class="example-card" *ngFor="let meal of allMeals | async">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{ meal.strMeal }}</mat-card-title>
+      <mat-card-title
+        style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden"
+        >{{ meal.strMeal }}</mat-card-title
+      >
     </mat-card-header>
     <img
       mat-card-image
       src="{{ meal.strMealThumb }}"
-      alt="Photo of a Shiba Inu"
+      alt="{{ meal.strMeal }}"
     />
-    <div class="star-points">
+    <div class="star-points-container">
       <p>Rating:</p>
-      <mat-icon *ngFor="let star of getStarsArray(5)">star</mat-icon>
+      <mat-icon class="stars" *ngFor="let star of getStarsArray(5)">
+        star
+      </mat-icon>
     </div>
   </mat-card>
 </section>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

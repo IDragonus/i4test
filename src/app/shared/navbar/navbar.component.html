@@ -1,0 +1,34 @@
+<mat-toolbar color="primary" *ngIf="person.username != undefined">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="flex-spacer"></span>
+  <mat-form-field appearance="fill">
+    <mat-label>Buscar</mat-label>
+    <input matInput type="text" placeholder="Buscar" />
+    <button mat-icon-button matSuffix>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+  <button mat-flat-button color="primary" (click)="logOut()">
+    Logout
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened="false" class="sidenav">
+    <mat-nav-list>
+      <p
+        *ngFor="let cat of category"
+        (click)="selectedCategory(cat.strCategory)"
+        class="txt-white"
+      >
+        {{ cat.strCategory }}
+      </p>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-home-page [categorySended]="categorySended"></app-home-page>
+  </mat-sidenav-content>
+</mat-sidenav-container>

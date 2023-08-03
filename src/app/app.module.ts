@@ -21,6 +21,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { MatCardModule } from '@angular/material/card';
     LoginComponent,
     HomePageComponent,
     ErrorComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { MatCardModule } from '@angular/material/card';
     MatSidenavModule,
     MatListModule,
     MatCardModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
