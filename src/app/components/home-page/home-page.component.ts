@@ -35,7 +35,9 @@ export class HomePageComponent {
     private mealsService: MealsService,
     private changeDetectorRef: ChangeDetectorRef,
     public dialog: MatDialog
-  ) {}
+  ) {
+    this.dataSource = new MatTableDataSource();
+  }
 
   ngOnInit() {
     this.canadianMealsList();

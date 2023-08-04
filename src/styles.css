@@ -17,9 +17,9 @@ input[type="text"] {
   background-color: #fff;
 }
 
-.mat-drawer-content {
+/* .mat-drawer-content {
   height: 83.9vh !important;
-}
+} */
 
 app-home-page {
   height: inherit;

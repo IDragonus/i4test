@@ -7,10 +7,10 @@ import {
   Admin,
 } from 'src/app/interfaces/interfaces';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, catchError, map, of } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-const MAX_SEARCH_HISTORY_LENGTH = 11;
+const MAX_SEARCH_HISTORY_LENGTH = 10;
 
 @Component({
   selector: 'app-navbar',
@@ -68,7 +68,7 @@ export class NavbarComponent {
     this.router.navigate(['/login'], navigationExtras);
   }
 
-  private clearLocalStorage(): void {
+  public clearLocalStorage(): void {
     localStorage.removeItem('persona');
   }
 
@@ -102,17 +102,17 @@ export class NavbarComponent {
     }
   }
 
-  remove(fruit: string): void {
-    const index = this.searchMade.indexOf(fruit);
+  remove(meal: string): void {
+    const index = this.searchMade.indexOf(meal);
 
     if (index >= 0) {
-      this.searchMade = this.searchMade.filter((item) => item !== fruit);
+      this.searchMade = this.searchMade.filter((item) => item !== meal);
 
-      this.announceRemoval(fruit);
+      this.announceRemoval(meal);
     }
   }
 
-  announceRemoval(fruit: string): void {
-    this.announcer.announce(`Removed ${fruit}`);
+  announceRemoval(meal: string): void {
+    this.announcer.announce(`Removed ${meal}`);
   }
 }

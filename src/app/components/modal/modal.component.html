@@ -1,8 +1,8 @@
 <mat-card class="example-card">
   <img
-    *ngIf="meals"
+    *ngIf="meals && meals.length > 0"
     mat-card-image
-    src="{{ meals[0].strMealThumb }}"
+    [src]="meals[0].strMealThumb"
     alt="Photo of a Shiba Inu"
   />
 </mat-card>

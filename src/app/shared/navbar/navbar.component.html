@@ -2,7 +2,6 @@
   <button mat-icon-button (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span class="flex-spacer"></span>
 
   <div class="search-container">
     <mat-form-field appearance="fill">
@@ -17,14 +16,17 @@
         <mat-icon>search</mat-icon>
       </button>
     </mat-form-field>
-    <mat-chip-grid #chipGrid aria-label="Fruit selection">
-      <mat-chip-row *ngFor="let chip of searchMade" (removed)="remove(chip)">
-        {{ chip }}
-        <button matChipRemove [attr.aria-label]="'remove ' + chip">
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip-row>
-    </mat-chip-grid>
+    <mat-form-field>
+      <mat-chip-grid #chipGrid aria-label="Fruit selection">
+        <mat-chip-row *ngFor="let chip of searchMade" (removed)="remove(chip)">
+          {{ chip }}
+          <button matChipRemove [attr.aria-label]="'remove ' + chip">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input matInput [matChipInputFor]="chipGrid" />
+      </mat-chip-grid>
+    </mat-form-field>
   </div>
 
   <button mat-flat-button color="primary" (click)="logOut()">

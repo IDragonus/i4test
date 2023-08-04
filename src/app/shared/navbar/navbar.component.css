@@ -1,5 +1,6 @@
 .mat-toolbar {
-  height: 64px;
+  height: 12rem;
+  justify-content: space-between;
 }
 
 .flex-spacer {
@@ -13,10 +14,6 @@
 .sidenav {
   width: 250px;
   background-color: #3f51b5;
-}
-
-.mat-toolbar {
-  height: 10rem;
 }
 
 .txt-white {
@@ -53,32 +50,9 @@
 .search-container {
   display: flex;
   flex-flow: column;
+  width: 70%;
 }
 
-/* .inputContainer {
-  margin: auto;
-  width: 50%;
-  display: flex;
+input#mat-mdc-chip-list-input-0 {
+  display: none;
 }
-
-input[type="text"] {
-  border: none;
-  padding: 1rem;
-  width: 100%;
-  border-radius: 0.5rem 0 0 0.5rem;
-  -webkit-border-radius: 0.5rem 0 0 0.5rem;
-  -moz-border-radius: 0.5rem 0 0 0.5rem;
-  -ms-border-radius: 0.5rem 0 0 0.5rem;
-  -o-border-radius: 0.5rem 0 0 0.5rem;
-  font-size: 18px;
-}
-
-.searchIcon {
-  background-color: hsl(0, 0%, 17%);
-  padding: 0.9rem;
-  border-radius: 0 0.5rem 0.5rem 0;
-}
-
-.searchIcon:hover {
-  cursor: pointer;
-} */

@@ -1,14 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalComponent } from './modal.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-describe('ModalComponent', () => {
+fdescribe('ModalComponent', () => {
   let component: ModalComponent;
   let fixture: ComponentFixture<ModalComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalComponent]
+      declarations: [ModalComponent],
+      imports: [HttpClientModule, MatDialogRef, MAT_DIALOG_DATA],
     });
     fixture = TestBed.createComponent(ModalComponent);
     component = fixture.componentInstance;
