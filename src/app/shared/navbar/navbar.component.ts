@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { MealsService } from 'src/app/services/meals.service';
 import {
@@ -9,6 +9,8 @@ import {
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+const MAX_SEARCH_HISTORY_LENGTH = 11;
 
 @Component({
   selector: 'app-navbar',
@@ -22,7 +24,6 @@ export class NavbarComponent {
   searchMealResult: string = '';
   response!: string;
   searchMade: string[] = [];
-  announcer = inject(LiveAnnouncer);
 
   ngOnInit() {
     this.getUserLocalStorage();
@@ -32,7 +33,8 @@ export class NavbarComponent {
   constructor(
     private router: Router,
     private mealsService: MealsService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private announcer: LiveAnnouncer
   ) {
     this.getMealByCategory();
   }
@@ -71,14 +73,6 @@ export class NavbarComponent {
   }
 
   getMealByCategory(): void {
-    /*this.mealsService.getAllCategories().subscribe({
-      next: (data: CategoriesApiResponse) => {
-        this.category = data.categories || null;
-      },
-      error: (error) => {
-        console.error('Error fetching meal categories', error);
-      },
-    });*/
     this.subscription = this.mealsService.getAllCategories().subscribe({
       next: (data: CategoriesApiResponse) => {
         this.category = data.categories || null;
@@ -92,16 +86,19 @@ export class NavbarComponent {
     });
   }
 
-  selectedCategory(category: string) {
-    this.categorySended = category;
+  selectedCategory(category: string): void {
+    if (this.categorySended !== category) {
+      this.categorySended = category;
+    }
   }
 
   searched(value: string) {
-    const MAX_SEARCH_HISTORY_LENGTH = 11;
-    this.response = value;
-    this.searchMade.push(value);
-    if (this.searchMade.length === MAX_SEARCH_HISTORY_LENGTH) {
-      this.searchMade.shift();
+    if (value.trim() !== '') {
+      this.response = value;
+      this.searchMade.push(value);
+      if (this.searchMade.length > MAX_SEARCH_HISTORY_LENGTH) {
+        this.searchMade.shift();
+      }
     }
   }
 
@@ -109,9 +106,13 @@ export class NavbarComponent {
     const index = this.searchMade.indexOf(fruit);
 
     if (index >= 0) {
-      this.searchMade.splice(index, 1);
+      this.searchMade = this.searchMade.filter((item) => item !== fruit);
 
-      this.announcer.announce(`Removed ${fruit}`);
+      this.announceRemoval(fruit);
     }
+  }
+
+  announceRemoval(fruit: string): void {
+    this.announcer.announce(`Removed ${fruit}`);
   }
 }

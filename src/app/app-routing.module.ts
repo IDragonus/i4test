@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { ErrorComponent } from './shared/error/error.component';
-// import { HomePageComponent } from './components/home-page/home-page.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
 const routes: Routes = [
