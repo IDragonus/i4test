@@ -16,6 +16,8 @@ export class HomePageComponent {
   rating: number = 0;
   stars: number[] = [1, 2, 3, 4, 5];
   meals!: Meal[];
+  selectedMealId!: string;
+  ratings: { [mealId: string]: number } = {};
   @Input() set categorySended(value: string) {
     this.showMealsByCategory(value);
   }
@@ -51,7 +53,7 @@ export class HomePageComponent {
       next: (data: MealApiResponse) => {
         this.meals = data.meals.map((meal: Meal) => ({
           ...meal,
-          rating: Math.floor(Math.random() * 5) + 1,
+          rating: 0,
         }));
         this.paginatorMeals();
       },
@@ -88,9 +90,14 @@ export class HomePageComponent {
     });
   }
 
-  onRatingChange(star: number) {
-    this.rating = star;
-    // Aquí puedes realizar acciones adicionales si es necesario
-    // Por ejemplo, guardar la puntuación en una lista de meals.
+  onRatingChange(star: number, mealId: string) {
+    this.ratings[mealId] = star;
+    this.selectedMealId = mealId;
+    const selectedMeal = this.meals.find((meal) => meal.idMeal === mealId);
+    if (selectedMeal) {
+      selectedMeal.rating = star;
+    }
+
+    this.paginatorMeals();
   }
 }

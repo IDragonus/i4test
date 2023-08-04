@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Admin } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-login',
@@ -37,8 +38,21 @@ export class LoginComponent {
     }
   }
 
-  grabarLocalStorage(data: any) {
-    localStorage.setItem('persona', JSON.stringify(data));
-    console.log('LOGIN', localStorage.setItem('persona', JSON.stringify(data)));
+  // grabarLocalStorage(data: any) {
+  //   localStorage.setItem('persona', JSON.stringify(data));
+  //   console.log(
+  //     'LOGIN:',
+  //     localStorage.setItem('persona', JSON.stringify(data))
+  //   );
+  // }
+
+  grabarLocalStorage(data: Admin) {
+    try {
+      localStorage.setItem('persona', JSON.stringify(data));
+      const savedData = JSON.parse(localStorage.getItem('persona') || '{}');
+      console.log('LOGIN:', savedData);
+    } catch (error) {
+      console.error('Error al guardar en el almacenamiento local:', error);
+    }
   }
 }
