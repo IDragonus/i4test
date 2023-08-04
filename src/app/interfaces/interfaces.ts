@@ -19,3 +19,8 @@ export interface Category {
 export interface CategoriesApiResponse {
   categories: Category[];
 }
+
+export interface Admin {
+  username: string;
+  password: string;
+}

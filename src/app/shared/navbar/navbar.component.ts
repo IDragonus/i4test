@@ -1,7 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MealsService } from 'src/app/services/meals.service';
-import { Category, CategoriesApiResponse } from 'src/app/interfaces/interfaces';
+import {
+  Category,
+  CategoriesApiResponse,
+  Admin,
+} from 'src/app/interfaces/interfaces';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
@@ -10,7 +14,6 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  person: any;
   category: Category[] | null = null;
   categorySended!: string;
   searchMealResult: string = '';
@@ -19,21 +22,35 @@ export class NavbarComponent {
   announcer = inject(LiveAnnouncer);
 
   ngOnInit() {
-    this.obtenerLocalstorage();
+    this.getUserLocalStorage();
     this.getMealByCategory();
   }
 
   constructor(private router: Router, private mealsService: MealsService) {}
 
-  obtenerLocalstorage() {
-    this.person = JSON.parse(localStorage.getItem('persona') || '{}');
+  getUserLocalStorage(): Admin {
+    try {
+      const userData = localStorage.getItem('persona');
+      if (userData) {
+        const admin: Admin = JSON.parse(userData);
+        return admin;
+      } else {
+        return {} as Admin;
+      }
+    } catch (error) {
+      console.error('Error getting local storage user data', error);
+      return {} as Admin;
+    }
   }
 
   logOut() {
     localStorage.removeItem('persona');
-    this.person = {};
     this.router.navigate(['/login']);
   }
+
+  // logOut(): void {
+  //   if(confirm('Are you sure to log out '))
+  // }
 
   getMealByCategory(): void {
     this.mealsService.getAllCategories().subscribe({

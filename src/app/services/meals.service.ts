@@ -58,7 +58,7 @@ export class MealsService {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           console.error('Error searching meal: ', error);
-          return throwError(() => error);
+          return throwError(() => 'Service error');
         })
       );
   }
